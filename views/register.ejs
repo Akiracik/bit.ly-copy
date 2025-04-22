@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main class="auth-page">
+    <div class="container">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <h2><i class="fas fa-user-plus"></i> Kayıt Ol</h2>
+            <p>Hemen ücretsiz hesap oluşturun ve link kısaltma avantajlarından yararlanın</p>
+          </div>
+          
+          <% if (error) { %>
+          <div class="alert alert-danger">
+            <i class="fas fa-exclamation-circle"></i> <%= error %>
+          </div>
+          <% } %>
+          
+          <div id="alert-container"></div>
+          
+          <form id="register-form">
+            <div class="form-group">
+              <label for="username"><i class="fas fa-user"></i> Kullanıcı Adı</label>
+              <input type="text" id="username" name="username" placeholder="kullanici_adi" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email"><i class="fas fa-envelope"></i> Email Adresi</label>
+              <input type="email" id="email" name="email" placeholder="ornek@mail.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="password"><i class="fas fa-lock"></i> Şifre</label>
+              <div class="password-input">
+                <input type="password" id="password" name="password" placeholder="En az 8 karakter" required>
+                <button type="button" class="password-toggle" tabindex="-1">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="password-strength" id="password-strength"></div>
+            </div>
+            
+            <div class="form-group">
+              <label for="password2"><i class="fas fa-lock"></i> Şifre Tekrar</label>
+              <div class="password-input">
+                <input type="password" id="password2" name="password2" placeholder="Şifrenizi tekrar girin" required>
+                <button type="button" class="password-toggle" tabindex="-1">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="form-terms">
+              <input type="checkbox" id="terms" name="terms" required>
+              <label for="terms">
+                <a href="/terms" target="_blank">Kullanım Şartları</a>'nı ve
+                <a href="/privacy" target="_blank">Gizlilik Politikası</a>'nı kabul ediyorum
+              </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">
+              <i class="fas fa-user-plus"></i> Kayıt Ol
+            </button>
+          </form>
+          
+          <div class="auth-footer">
+            <p>Zaten hesabınız var mı? <a href="/login">Giriş Yapın</a></p>
+          </div>
+        </div>
+        
+        <div class="auth-info">
+          <div class="info-content">
+            <h3>Ücretsiz Kayıt Avantajları</h3>
+            <p>Akira URL kısaltma hizmetine kayıt olarak:</p>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Sınırsız link kısaltabilir,</li>
+              <li><i class="fas fa-check-circle"></i> Özel URL kodları kullanabilir,</li>
+              <li><i class="fas fa-check-circle"></i> Link tıklamalarını analiz edebilir,</li>
+              <li><i class="fas fa-check-circle"></i> Ziyaretçi demografik verilerini görebilirsiniz.</li>
+            </ul>
+            <div class="info-image">
+              <img src="/img/register-illustration.svg" alt="Kayıt İllüstrasyon">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/auth.js"></script>
+</body>
+</html>

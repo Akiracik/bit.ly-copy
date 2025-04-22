@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - Akira URL Kısaltma</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .error-page {
+      text-align: center;
+      padding: 80px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .error-code {
+      font-size: 120px;
+      line-height: 1;
+      color: #e74c3c;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    
+    .error-message {
+      font-size: 24px;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    
+    .error-description {
+      font-size: 18px;
+      margin-bottom: 40px;
+      color: #666;
+    }
+    
+    .error-action {
+      margin-top: 30px;
+    }
+    
+    .error-action .btn {
+      font-size: 18px;
+      padding: 12px 30px;
+    }
+  </style>
+</head>
+<body>
+  <%- include('../partials/header') %>
+
+  <main>
+    <div class="error-page">
+      <div class="error-code">403</div>
+      <h1 class="error-message">Erişim Engellendi</h1>
+      <p class="error-description">Üzgünüz, bu sayfaya erişim izniniz bulunmamaktadır.</p>
+      
+      <div class="error-action">
+        <a href="/" class="btn btn-primary">Ana Sayfaya Dön</a>
+      </div>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

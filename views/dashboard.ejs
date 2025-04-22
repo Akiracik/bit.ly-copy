@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main class="dashboard">
+    <div class="container">
+      <div class="dashboard-header">
+        <h2 class="dashboard-title">Linklerim</h2>
+        <button id="create-link-btn" class="btn btn-primary">Yeni Link Oluştur</button>
+      </div>
+      
+      <div id="create-link-form" style="display: none;">
+        <div class="url-shortener">
+          <form id="dashboard-shorten-form">
+            <div class="form-group">
+              <label for="dashboard-url-input">URL</label>
+              <input type="url" id="dashboard-url-input" placeholder="https://example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="custom-code-input">Özel Kod (opsiyonel)</label>
+              <input type="text" id="custom-code-input" placeholder="ozel-kod">
+            </div>
+            <button type="submit" class="btn btn-primary">Kısalt</button>
+          </form>
+          <div class="form-message"></div>
+        </div>
+      </div>
+      
+      <div id="links-container">
+        <div class="loading">Linkler yükleniyor...</div>
+      </div>
+      
+      <div id="pagination" class="pagination">
+        <!-- Sayfalama buraya gelecek -->
+      </div>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

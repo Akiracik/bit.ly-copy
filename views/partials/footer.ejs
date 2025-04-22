@@ -1,0 +1,152 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="/img/logo.svg" alt="Akira URL">
+        <h3>Akira URL</h3>
+        <p>Profesyonel link kısaltma ve takip servisi</p>
+        <div class="social-icons">
+          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <div class="footer-links-column">
+          <h4>Ürün</h4>
+          <ul>
+            <li><a href="/#features">Özellikler</a></li>
+            <li><a href="/pricing">Fiyatlandırma</a></li>
+            <li><a href="/api-docs">API</a></li>
+            <li><a href="/integrations">Entegrasyonlar</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links-column">
+          <h4>Şirket</h4>
+          <ul>
+            <li><a href="/about">Hakkımızda</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/careers">Kariyer</a></li>
+            <li><a href="/contact">İletişim</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links-column">
+          <h4>Destek</h4>
+          <ul>
+            <li><a href="/help">Yardım Merkezi</a></li>
+            <li><a href="/faq">SSS</a></li>
+            <li><a href="/status">Sistem Durumu</a></li>
+            <li><a href="/report">Hata Bildir</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links-column">
+          <h4>Yasal</h4>
+          <ul>
+            <li><a href="/terms">Kullanım Şartları</a></li>
+            <li><a href="/privacy">Gizlilik Politikası</a></li>
+            <li><a href="/cookies">Çerez Politikası</a></li>
+            <li><a href="/security">Güvenlik</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; <%= new Date().getFullYear() %> Akira URL. Tüm hakları saklıdır.</p>
+      
+      <div class="language-selector">
+        <i class="fas fa-globe"></i>
+        <select>
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Kullanıcı menüsü açılır-kapanır
+  document.addEventListener('DOMContentLoaded', function() {
+    const userMenuBtn = document.querySelector('.btn-user');
+    const userDropdown = document.querySelector('.dropdown-menu');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const passwordToggles = document.querySelectorAll('.password-toggle');
+    
+    // Kullanıcı menüsü toggle
+    if (userMenuBtn && userDropdown) {
+      userMenuBtn.addEventListener('click', function() {
+        userDropdown.classList.toggle('active');
+      });
+      
+      // Dışarı tıklanınca menüyü kapat
+      document.addEventListener('click', function(e) {
+        if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+          userDropdown.classList.remove('active');
+        }
+      });
+    }
+    
+    // Mobil menü toggle
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('active');
+        mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+        mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+      });
+    }
+    
+    // Şifre göster/gizle
+    if (passwordToggles.length > 0) {
+      passwordToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          const input = this.previousElementSibling;
+          if (input.type === 'password') {
+            input.type = 'text';
+            this.querySelector('i').classList.remove('fa-eye');
+            this.querySelector('i').classList.add('fa-eye-slash');
+          } else {
+            input.type = 'password';
+            this.querySelector('i').classList.remove('fa-eye-slash');
+            this.querySelector('i').classList.add('fa-eye');
+          }
+        });
+      });
+    }
+    
+    // Çıkış işlemleri
+    const logoutBtn = document.getElementById('logout-btn');
+    const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
+    
+    const handleLogout = async function(e) {
+      e.preventDefault();
+      
+      try {
+        const response = await fetch('/api/auth/logout');
+        const data = await response.json();
+        
+        if (data.success) {
+          window.location.href = '/';
+        }
+      } catch (error) {
+        console.error('Logout error:', error);
+      }
+    };
+    
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', handleLogout);
+    }
+    
+    if (mobileLogoutBtn) {
+      mobileLogoutBtn.addEventListener('click', handleLogout);
+    }
+  });
+</script>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <meta name="description" content="Akira URL Kısaltma - Uzun linkleri hızlıca kısaltın ve istatistiklerini takip edin">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Uzun linkleri <span class="text-primary">kısaltın</span>,<br>
+            tıklanmaları <span class="text-primary">takip edin</span>
+          </h1>
+          <p class="hero-subtitle">Akira ile saniyeler içinde profesyonel link kısaltma</p>
+          
+          <div class="url-shortener">
+            <form id="shorten-form">
+              <div class="input-group">
+                <div class="input-icon">
+                  <i class="fas fa-link"></i>
+                </div>
+                <input type="url" id="url-input" placeholder="Kısaltmak istediğiniz URL'yi girin..." required>
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-bolt"></i> Kısalt
+                </button>
+              </div>
+              <div class="form-message"></div>
+            </form>
+          </div>
+          
+          <div class="result" id="result-container" style="display: none;">
+            <h3><i class="fas fa-check-circle text-success"></i> Kısaltılmış Link:</h3>
+            <div class="short-url-container">
+              <input type="text" id="short-url" readonly>
+              <button id="copy-btn" class="btn btn-secondary">
+                <i class="fas fa-copy"></i> Kopyala
+              </button>
+            </div>
+            <p class="result-message">
+              <%= user ? 'Link başarıyla kısaltıldı! <a href="/dashboard">Dashboard</a> üzerinden istatistiklerini takip edebilirsiniz.' : 'Bu linki kullanarak istatistiklerini görmek için <a href="/login">giriş yapın</a> veya <a href="/register">kayıt olun</a>.' %>
+            </p>
+          </div>
+        </div>
+        
+        <div class="hero-image">
+          <img src="/img/hero-illustration.svg" alt="Link kısaltma">
+        </div>
+      </div>
+    </section>
+    
+    <section class="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>Neden Akira URL?</h2>
+          <p>Profesyonel link yönetim sistemi</p>
+        </div>
+        
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Detaylı İstatistikler</h3>
+            <p>Her bir link tıklaması hakkında detaylı bilgi alın: coğrafi konum, tarayıcı, cihaz vb.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Güvenli Bağlantılar</h3>
+            <p>Tüm linkler güvenlik kontrollerinden geçirilir, zararlı içerik barındırmaz.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Hızlı ve Kolay</h3>
+            <p>Bir tık ile uzun linklerinizi anında kısaltabilir ve paylaşabilirsiniz.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Mobil Uyumlu</h3>
+            <p>Her türlü cihazdan linkleri kısaltabilir ve yönetebilirsiniz.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <h3>Özel URL'ler</h3>
+            <p>Kendi özel kodlarınızı oluşturarak markalaşmış linkler yaratın.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Ekip Çalışması</h3>
+            <p>Ekip arkadaşlarınızla link ve analitik verilerinizi paylaşın.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <h2>Nasıl Çalışır?</h2>
+          <p>Üç kolay adımda link kısaltın</p>
+        </div>
+        
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Linkinizi Yapıştırın</h3>
+              <p>Kısaltmak istediğiniz uzun URL'yi forma yapıştırın.</p>
+            </div>
+          </div>
+          
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Kısalt Butonuna Tıklayın</h3>
+              <p>Tek bir tıklama ile uzun URL'niz kısa ve kullanışlı bir formata dönüşür.</p>
+            </div>
+          </div>
+          
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Kısa Linkinizi Paylaşın</h3>
+              <p>Kısa linkinizi sosyal medyada, e-postalarda veya mesajlarda paylaşın.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Hemen Başlayın</h2>
+          <p>Ücretsiz hesap oluşturun ve link kısaltmanın tüm avantajlarından yararlanın.</p>
+          <div class="cta-buttons">
+            <a href="/register" class="btn btn-primary">
+              <i class="fas fa-user-plus"></i> Kayıt Ol
+            </a>
+            <a href="/login" class="btn btn-secondary">
+              <i class="fas fa-sign-in-alt"></i> Giriş Yap
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
